@@ -1,7 +1,7 @@
 /* this script will be used to code the game. 
 distributing the elements comes later */
 
-$( document ).ready(function() {
+/*$( document ).ready(function() {
 	var canvas = document.getElementById('canvas');
 	var context = canvas.getContext('2d');
 	context.fillStyle = 'blue';
@@ -13,7 +13,23 @@ $( document ).ready(function() {
 	});	
 
 });
+*/
 
+function start() {
+	var c=document.getElementById("board");
+	var ctx=c.getContext("2d");
+
+	ctx.font="20px Georgia";
+	ctx.fillText("Click to Start!",20,70);
+
+	ctx.beginPath();
+    ctx.moveTo(20, 80);
+    ctx.lineTo(140, 80);
+    ctx.stroke();
+
+    blinkText(c, ctx);
+}
+ 
 /*
 //function createPlayer() {
 	var player = document.createElement('div');
