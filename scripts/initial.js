@@ -1,6 +1,3 @@
-/* this script will be used to code the game. 
-distributing the elements comes later */
-
 /* FUNCTIONS THAT GENERALLY JUST DO GOOD THINGS */
 function toInt( margin ) { return parseInt( margin.slice(0, -2) ); }
 
@@ -22,8 +19,7 @@ function start() {
 	var c = document.getElementById("board");
 	var ctx = c.getContext("2d");
 
-	// background color
-	fillWhite( ctx );
+	fillWhite( ctx ); // background color
 
 	/* start message */
 	ctx.font="20px Georgia";
@@ -58,7 +54,7 @@ function move(ID, gap, direction ) {
 	margin = parseInt( margin );
 	margin += gap;
 	
-	if (ID == 'player' && (margin < -320 || margin > -80)) return;
+	if (ID == 'player' && (margin < -310 || margin > -80)) return;
 	
 	if  (direction == 'up') p.style.marginTop = margin.toString() + 'px';
 	else p.style.marginLeft = margin.toString() + 'px';
@@ -94,20 +90,27 @@ function startTheGame() {
 
 		/* INCREMENT COUNTER */
 		if (left > 480) {
-			var p = document.getElementById('counter').innerHTML;
-			p++;
-			document.getElementById('counter').innerHTML = p;
+			document.getElementById('counter').innerHTML++;
 		}
 
 		/* BOUNCE OFF BUMPER (or don't) */
 		var pTop = toInt(player.style.marginTop);
-		if (left < 70)
-			if ( pTop - top < 30 && top - pTop < 50) dx *= -1;
+		if (left < 70) {
+			if ( pTop - top < 30 && top - pTop < 70) dx *= -1;
 						/* WORK ON THESE PARAMETERS, THEY NEED SOME HELP!!! */
+			
 			else { 		// die gracefully
 				document.getElementById('ball').style.background = 'red';
 				clearInterval( MAIN_INTERVAL );
+
+				/* WRITE ENDING SCREEN */
+				var score = document.getElementById('counter').innerHTML;
+				clear( ctx );
+				ctx.font="20px Georgia";
+				ctx.fillStyle='black';
+				ctx.fillText("Your score is "+score,70,70);
 			}
+		}
 
 		/* CALL MOVEMENT FUNCTIONS */
 		move('ball', dy, 'up');
@@ -117,10 +120,7 @@ function startTheGame() {
 }
 
 function createPlayer() {
-	var c = document.getElementById("board");
-	var ctx = c.getContext("2d");
-	
-	var player = document.createElement('div');
+	player = document.createElement('div');
 
 	player.style.width 	= '15px';
 	player.style.height	= '70px';
@@ -137,9 +137,6 @@ function createPlayer() {
 }
 
 function createBall() {
-	var c = document.getElementById('board');
-	var ctx = c.getContext('2d');
-
 	var ball = document.createElement('div');
 
 	ball.style.width 	 = '15px';
@@ -148,8 +145,7 @@ function createBall() {
 	ball.style.position  = 'absolute';
 	ball.style.marginLeft= '250px';
 	ball.style.marginTop = '-170px';
-
-	ball.id = 'ball';
+		ball.id = 'ball';
 
 	document.getElementById('wrapper').appendChild(ball);
 }
