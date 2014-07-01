@@ -1,5 +1,6 @@
 body {
-	background-color: yellow;
+	/*background-color: blue;*/
+	background-image: url("http://farm2.staticflickr.com/1395/3173156088_babccc3f26_o.jpg");
 	overflow: hidden;
 }
 
@@ -11,4 +12,10 @@ canvas {
 	border: 4px solid black;
 	height: 300px;
 	width: 500px;
+}
+
+.counter {
+	-webkit-text-stroke-width: 1px;
+   	-webkit-text-stroke-color: white;
+   	font-size: 40px;
 }
