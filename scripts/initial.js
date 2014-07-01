@@ -2,7 +2,6 @@
 distributing the elements comes later */
 
 /* FUNCTIONS THAT GENERALLY JUST DO GOOD THINGS */
-
 function toInt( margin ) { return parseInt( margin.slice(0, -2) ); }
 
 function toString( int ) { return int.toString + 'px'; }
@@ -69,8 +68,9 @@ function startTheGame() {
 	var c = document.getElementById('board');
 	var ctx = c.getContext('2d');
 
-	var dx = 5;
-	var dy = 5;
+	var dx = Math.floor((Math.random() * 5) + 3);
+	var dy = Math.floor((Math.random() * 5) + 3);
+		 // generate random number b/w 3 and 7
 
 	document.onkeydown = function() {
 	    switch (window.event.keyCode) {
@@ -83,17 +83,37 @@ function startTheGame() {
 	    }
 	};
 	
-	setInterval(function() {
+	var MAIN_INTERVAL = setInterval(function() {
 		var bstyle = document.getElementById( 'ball' ).style;
 		var left = toInt( bstyle.marginLeft );
 		var top  = toInt( bstyle.marginTop  );
 
-		if ( left > 300 || left < 100 )   	{ dx *= -1; }
-		if ( top < -200 || top > -100 ) { dy *= -1; }
+		/* CHANGE DIRECTIONS IF NECESSARY */
+		if ( left > 480 /*|| left < 70 */) dx *= -1; // set left and right parameters
+		if ( top < -300 || top > -30 ) dy *= -1; // set top and bottom paramaters
 
+		/* INCREMENT COUNTER */
+		if (left > 480) {
+			var p = document.getElementById('counter').innerHTML;
+			p = toInt( p );
+			p++;
+			document.getElementById('counter').innerHTML = p;
+		}
+
+		/* BOUNCE OFF BUMPER (or don't) */
+		var pTop = toInt(player.style.marginTop);
+		if (left < 70)
+			if ( pTop - top < 40 ) dx *= -1;
+			else { // die gracefully
+				document.getElementById('ball').style.background = 'red';
+				clearInterval( MAIN_INTERVAL );
+
+			}
+
+		/* CALL MOVEMENT FUNCTIONS */
 		move('ball', dy, 'up');
 		move('ball', dx, 'left');
-	}, 50);
+	}, 10); // set how quickly the bottom moves
 	
 }
 
@@ -105,7 +125,7 @@ function createPlayer() {
 
 	player.style.width 	= '15px';
 	player.style.height	= '70px';
-	player.style.background= 'red';
+	player.style.background= 'green';
 	player.style.color		= 'black';
 	player.style.border	= '1px solid black';
 	player.style.position	= 'absolute';
