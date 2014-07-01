@@ -24,7 +24,7 @@ function start() {
 	/* start message */
 	ctx.font="15px Georgia";
 	ctx.fillStyle='black';
-	ctx.fillText("Click to Fuck Michael! (Use arrows to move)",30,70);
+	ctx.fillText("Click to play! (Use arrows to move)",30,70);
 
 	/* line underneath the text */
 	ctx.beginPath();
