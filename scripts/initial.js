@@ -75,10 +75,10 @@ function startTheGame() {
 	document.onkeydown = function() {
 	    switch (window.event.keyCode) {
 	        case 38: // up arrow
-	            move('player', -10, 'up' );
+	            move('player', -20, 'up' );
 	            break;
 	        case 40: // down arrow
-	            move('player', 10, 'up' );
+	            move('player', 20, 'up' );
 	            break;
 	    }
 	};
@@ -103,11 +103,11 @@ function startTheGame() {
 		/* BOUNCE OFF BUMPER (or don't) */
 		var pTop = toInt(player.style.marginTop);
 		if (left < 70)
-			if ( pTop - top < 40 ) dx *= -1;
-			else { // die gracefully
+			if ( pTop - top < 30 && top - pTop < 50) dx *= -1;
+						/* WORK ON THESE PARAMETERS, THEY NEED SOME HELP!!! */
+			else { 		// die gracefully
 				document.getElementById('ball').style.background = 'red';
 				clearInterval( MAIN_INTERVAL );
-
 			}
 
 		/* CALL MOVEMENT FUNCTIONS */
