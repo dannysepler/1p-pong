@@ -22,14 +22,14 @@ function start() {
 	fillWhite( ctx ); // background color
 
 	/* start message */
-	ctx.font="20px Georgia";
+	ctx.font="15px Georgia";
 	ctx.fillStyle='black';
-	ctx.fillText("Click to Start!",70,70);
+	ctx.fillText("Click to Fuck Michael! (Use arrows to move)",30,70);
 
 	/* line underneath the text */
 	ctx.beginPath();
-    ctx.moveTo(70, 80);
-    ctx.lineTo(190, 80);
+    ctx.moveTo(30, 80);
+    ctx.lineTo(265, 80);
     ctx.stroke();
 
     var started = false;
@@ -88,15 +88,13 @@ function startTheGame() {
 		if ( left > 480 /*|| left < 70 */) dx *= -1; // set left and right parameters
 		if ( top < -300 || top > -30 ) dy *= -1; // set top and bottom paramaters
 
-		/* INCREMENT COUNTER */
-		if (left > 480) {
-			document.getElementById('counter').innerHTML++;
-		}
-
 		/* BOUNCE OFF BUMPER (or don't) */
 		var pTop = toInt(player.style.marginTop);
 		if (left < 70) {
-			if ( pTop - top < 30 && top - pTop < 70) dx *= -1;
+			if ( pTop - top < 30 && top - pTop < 70) {
+				document.getElementById('counter').innerHTML++; // COUNTER
+				dx *= -1;
+			}
 						/* WORK ON THESE PARAMETERS, THEY NEED SOME HELP!!! */
 			
 			else { 		// die gracefully
