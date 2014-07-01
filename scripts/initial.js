@@ -95,7 +95,6 @@ function startTheGame() {
 		/* INCREMENT COUNTER */
 		if (left > 480) {
 			var p = document.getElementById('counter').innerHTML;
-			p = toInt( p );
 			p++;
 			document.getElementById('counter').innerHTML = p;
 		}
