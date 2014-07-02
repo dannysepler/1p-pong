@@ -143,6 +143,7 @@ function createBall() {
 	ball.style.position  = 'absolute';
 	ball.style.marginLeft= '250px';
 	ball.style.marginTop = '-170px';
+	ball.style.borderRadius = '10px';
 		ball.id = 'ball';
 
 	document.getElementById('wrapper').appendChild(ball);
