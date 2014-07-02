@@ -1,8 +1,6 @@
 1p-pong
 =======
 
-# A beginner's video game
-
 ### Basics about the game:
 - All of the javascript currently exists on one file (scripts/initial.js)
 - Uses a "canvas" -- an element of HTML5
